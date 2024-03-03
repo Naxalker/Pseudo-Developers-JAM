@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
+[RequireComponent(typeof(AudioSource))]
 public class GameplayUI : MonoBehaviour
 {
     [SerializeField] private DialogPanel _dialogPanel;
@@ -35,7 +36,12 @@ public class GameplayUI : MonoBehaviour
 
     public void SetScene(int panelIndex)
     {
+        GetComponent<AudioSource>().Play();
+
         _gameplayUIMediator.LoadNextScene(panelIndex);
+
+        _leftChoicePanel.Deactivate();
+        _rightChoicePanel.Deactivate();
     }
 
     private void OnDialogTextIsSet()

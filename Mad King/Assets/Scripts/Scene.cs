@@ -5,6 +5,7 @@ using Zenject;
 public class Scene : MonoBehaviour
 {
     private float FadeDuration = .5f;
+    private float ScaleDuration = 1f;
 
     [SerializeField] private SpriteRenderer _background;
     [SerializeField] private SpriteRenderer _hero;
@@ -27,22 +28,33 @@ public class Scene : MonoBehaviour
         _background.DOFade(1f, FadeDuration);
 
         _hero.sprite = sceneData.HeroSprite;
-        _hero.DOFade(1f, FadeDuration);
+        _hero.transform.DOScale(1.3f, ScaleDuration).SetEase(Ease.OutElastic);
 
         _leftVisitor.sprite = sceneData.LeftVisitorSprite;
-        _leftVisitor.DOFade(1f, FadeDuration);
+        _leftVisitor.transform.DOScale(1f, ScaleDuration).SetEase(Ease.OutElastic);
 
         _rightVisitor.sprite = sceneData.RightVisitorSprite;
-        _rightVisitor.DOFade(1f, FadeDuration);
+        _rightVisitor.transform.DOScale(1f, ScaleDuration).SetEase(Ease.OutElastic);
 
         _mediator.UpdateUIData(sceneData);
     }
 
-    public void ClearScene()
+    public void ClearAndSet(SceneSO sceneData)
     {
-        _background.DOFade(0f, FadeDuration);
-        _hero.DOFade(0f, FadeDuration);
-        _leftVisitor.DOFade(0f, FadeDuration);
-        _rightVisitor.DOFade(0f, FadeDuration);
+        Sequence fadeSequence = DOTween.Sequence();
+
+        if (sceneData.BackgroundImage != _background.sprite)
+            fadeSequence.Join(_background.DOFade(0f, FadeDuration));
+
+        if (sceneData.HeroSprite != _hero.sprite)
+            fadeSequence.Join(_hero.transform.DOScale(0f, ScaleDuration).SetEase(Ease.OutQuart));
+
+        if (sceneData.LeftVisitorSprite != _leftVisitor.sprite)
+            fadeSequence.Join(_leftVisitor.transform.DOScale(0f, ScaleDuration).SetEase(Ease.OutQuart));
+
+        if (sceneData.RightVisitorSprite != _rightVisitor.sprite)
+            fadeSequence.Join(_rightVisitor.transform.DOScale(0f, ScaleDuration).SetEase(Ease.OutQuart));
+
+        fadeSequence.OnComplete(() => SetScene(sceneData));
     }
 }

@@ -26,8 +26,7 @@ public class ScenesController : IInitializable
 
     public void SetScene(int id)
     {
-        _scene.ClearScene();
-        //_scene.SetScene(GetSceneWithIndex(id));
+        _scene.ClearAndSet(GetSceneWithIndex(id));
     }
 
     private SceneSO GetSceneWithIndex(int id)

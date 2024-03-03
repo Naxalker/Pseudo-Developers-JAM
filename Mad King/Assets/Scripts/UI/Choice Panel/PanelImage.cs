@@ -19,8 +19,8 @@ public class PanelImage : MonoBehaviour
     {
         _choiceImage = GetComponent<Image>();
 
-        _startPos = _startTransform.position;
-        _endPos = _endTransform.position;
+        _startPos = _startTransform.anchoredPosition;
+        _endPos = _endTransform.anchoredPosition;
 
         _startRot = _startTransform.rotation.eulerAngles;
         _endRot = _endTransform.rotation.eulerAngles;
@@ -28,14 +28,14 @@ public class PanelImage : MonoBehaviour
 
     public void Appear()
     {
-        _choiceImage.rectTransform.DOMove(_endPos, AppearDuration);
+        _choiceImage.rectTransform.DOAnchorPos(_endPos, AppearDuration);
         _choiceImage.rectTransform.DORotate(_endRot, AppearDuration);
         _choiceImage.DOFade(.5f, AppearDuration);
     }
 
     public void Disappear()
     {
-        _choiceImage.rectTransform.DOMove(_startPos, AppearDuration);
+        _choiceImage.rectTransform.DOAnchorPos(_startPos, AppearDuration);
         _choiceImage.rectTransform.DORotate(_startRot, AppearDuration);
         _choiceImage.DOFade(0f, AppearDuration);
     }

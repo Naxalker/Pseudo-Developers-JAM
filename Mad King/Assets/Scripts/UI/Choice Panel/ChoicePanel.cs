@@ -22,7 +22,7 @@ public class ChoicePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void Deactivate()
     {
-        _panelImage.enabled = false;
+        GetComponent<Image>().enabled = false;
         _panelImage.Disappear();
         _leftPanelText.DOFade(0f, FadeDuration);
     }
