@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Scene16
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 16
-  BackgroundImage: {fileID: 21300000, guid: 5461ab9a0cda121438bef103fb3505e9, type: 3}
-  HeroSprite: {fileID: 21300000, guid: 941bec89ebb500a4c878835ecb4d22f9, type: 3}
+  BackgroundImage: {fileID: 21300000, guid: 941bec89ebb500a4c878835ecb4d22f9, type: 3}
+  HeroSprite: {fileID: 21300000, guid: 5461ab9a0cda121438bef103fb3505e9, type: 3}
   LeftVisitorSprite: {fileID: 21300000, guid: 2945760d5b892484b87edc4eeb1d77ea, type: 3}
   RightVisitorSprite: {fileID: 0}
   DialogText: "\u0412\u044B \u043F\u0440\u0438\u0431\u043B\u0438\u0436\u0430\u0435\u0442\u0435\u0441\u044C
