@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scene1
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 1
-  BackgroundImage: {fileID: 21300000, guid: de950e45135b12e40961d0991c825a7d, type: 3}
+  BackgroundImage: {fileID: 21300000, guid: 6dce103918e6a43d5aec82d5d5653e9a, type: 3}
   HeroSprite: {fileID: 21300000, guid: 68cf558a8d893014dbefefa66baf455c, type: 3}
   LeftVisitorSprite: {fileID: 21300000, guid: 68cf558a8d893014dbefefa66baf455c, type: 3}
   RightVisitorSprite: {fileID: 21300000, guid: 68cf558a8d893014dbefefa66baf455c, type: 3}

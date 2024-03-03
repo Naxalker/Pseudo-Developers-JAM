@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class DialogPanel : MonoBehaviour
 {
+    public event Action TextIsSet;
+
     [SerializeField] private TMP_Text _text;
 
     [SerializeField] private float _timeBetweenCharacters;
@@ -25,5 +28,7 @@ public class DialogPanel : MonoBehaviour
             _text.text = currentText;
             yield return new WaitForSeconds(_timeBetweenCharacters);
         }
+
+        TextIsSet?.Invoke();
     }
 }

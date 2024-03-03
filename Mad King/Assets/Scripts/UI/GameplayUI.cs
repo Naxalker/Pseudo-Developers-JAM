@@ -5,8 +5,8 @@ using Zenject;
 public class GameplayUI : MonoBehaviour
 {
     [SerializeField] private DialogPanel _dialogPanel;
-    [SerializeField] private TMP_Text _leftDialogText;
-    [SerializeField] private TMP_Text _rightDialogText;
+    [SerializeField] private ChoicePanel _leftChoicePanel;
+    [SerializeField] private ChoicePanel _rightChoicePanel;
 
     private SceneGameplayUIMediator _gameplayUIMediator;
 
@@ -16,15 +16,31 @@ public class GameplayUI : MonoBehaviour
         _gameplayUIMediator = gameplayUIMediator;
     }
 
+    private void OnEnable()
+    {
+        _dialogPanel.TextIsSet += OnDialogTextIsSet;
+    }
+
+    private void OnDisable()
+    {
+        _dialogPanel.TextIsSet -= OnDialogTextIsSet;
+    }
+
     public void SetText(string dialogText, string leftDialogText, string rightDialogText)
     {
         _dialogPanel.SetText(dialogText);
-        _leftDialogText.text = leftDialogText;
-        _rightDialogText.text = rightDialogText;
+        _leftChoicePanel.SetText(leftDialogText);
+        _rightChoicePanel.SetText(rightDialogText);
     }
 
     public void SetScene(int panelIndex)
     {
         _gameplayUIMediator.LoadNextScene(panelIndex);
+    }
+
+    private void OnDialogTextIsSet()
+    {
+        _leftChoicePanel.Activate();
+        _rightChoicePanel.Activate();
     }
 }

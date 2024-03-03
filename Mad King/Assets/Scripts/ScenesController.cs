@@ -25,14 +25,23 @@ public class ScenesController : IInitializable
     }
 
     public void SetScene(int id)
-        => _scene.SetScene(GetSceneWithIndex(id));
+    {
+        _scene.ClearScene();
+        //_scene.SetScene(GetSceneWithIndex(id));
+    }
 
     private SceneSO GetSceneWithIndex(int id)
     {
         if (id < 0)
             throw new ArgumentException("id должен быть больше 0");
 
-        return _scenesData.FirstOrDefault(scene  => scene.Id == id);
+        try
+        {
+            return _scenesData.First(scene => scene.Id == id);
+        } catch (InvalidOperationException)
+        {
+            throw new ArgumentException($"ID {id} не найден");
+        }
     }
 
     private void LoadScenes()
